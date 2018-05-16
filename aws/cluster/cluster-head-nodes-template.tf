@@ -60,6 +60,7 @@ EOF
 }
 
 data "template_file" "bastion-spec" {
+  count    = "${var.enable == "true" ? 1 : 0}"
   count    = "${var.kops-topology == "private" ? 1 : 0}"
   template = "${file("${path.module}/templates/ig-spec.yaml")}"
 
